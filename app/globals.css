@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .inner-button {
+    @apply inline-flex h-12 animate-shimmer items-center justify-center rounded-2xl border border-inybg bg-[linear-gradient(110deg,#204c9c,44%,#64a4da,55%,#204c9c)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none
+}
+.navbar-button {
+    @apply inline-flex h-10 animate-shimmer items-center justify-center rounded-xl border border-inybg bg-[linear-gradient(110deg,#204c9c,44%,#64a4da,55%,#204c9c)] bg-[length:200%_100%] px-4 font-medium text-xs text-white transition-colors focus:outline-none;
+}
+.Reg-button {
+    @apply inline-flex h-10 animate-shimmer items-center justify-center rounded-xl border border-inybg bg-[linear-gradient(110deg,#204c9c,44%,#64a4da,55%,#204c9c)] bg-[length:200%_100%] px-4 font-medium text-xs text-white transition-colors focus:outline-none;
+}
+
+}
+.hover\:text-shadow:hover {
+    text-shadow: 0 0 0 transparent;
+    font-weight: bold;
+}
