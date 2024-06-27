@@ -4,7 +4,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/utils/cn";
 
-export function DataUser() {
+export function RegisteInner() {
   const [userData, setUserData] = useState({
     firstname: "",
     lastname: "",
@@ -17,7 +17,8 @@ export function DataUser() {
     street: "",
     houseNumber: "",
     source: "",
-    otherSource: ""
+    otherSource: "",
+    password: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -25,15 +26,47 @@ export function DataUser() {
     setUserData({ ...userData, [id]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted with data: ", userData);
+    const payload = {
+      primer_nombre: userData.firstname,
+      apellido: userData.lastname,
+      correo: userData.email,
+      rut: userData.rut,
+      edad: parseInt(userData.age),
+      password: userData.password,
+      actividad_u_oficio: userData.occupation,
+      region: userData.region,
+      comuna: userData.comuna,
+      calle: userData.street,
+      numero: userData.houseNumber,
+      como_supo_de_iny: userData.source !== "Otro" ? userData.source : userData.otherSource
+    };
+
+    try {
+      const response = await fetch("https://epsilon.iny.app/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        console.log("Form submitted successfully with data: ", payload);
+      } else {
+        console.error("Failed to submit form");
+
+      }
+    } catch (error) {
+      console.error("Error submitting form: ", error);
+    }
   };
 
   return (
     <div className="max-w-2xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gradient-to-r from-blue-900 via-inybg to-blue-900 flex justify-center items-center">
       <div className="max-w-2xl w-full mx-auto flex flex-col justify-center items-center">
-  <img src="/iny.png" className="h-20 w-26 mb-4" alt="INY Logo" />
+        <img src="/iny.png" className="h-20 w-26 mb-4" alt="INY Logo" />
         <h2 className="font-bold text-xl text-neutral-200 dark:text-neutral-200 text-center">
           ¡Convierte en Inner!
         </h2>
@@ -173,12 +206,22 @@ export function DataUser() {
               />
             </LabelInputContainer>
           )}
+          <LabelInputContainer>
+            <Label htmlFor="password">Contraseña</Label>
+            <Input
+              id="password"
+              value={userData.password}
+              onChange={handleChange}
+              placeholder="Contraseña"
+              type="password"
+            />
+          </LabelInputContainer>
 
           <button
-            className="Reg-button w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            className="Reg-button w-full mt-4 text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
           >
-            Sign up &rarr;
+            Registrarte &rarr;
             <BottomGradient />
           </button>
         </form>
