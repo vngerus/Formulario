@@ -4,7 +4,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/utils/cn";
 
-export function RegisteInner() {
+export function LoginPartner() {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -42,14 +42,14 @@ export function RegisteInner() {
   };
 
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gradient-to-r from-inybg via-blue-900 to-inybg">
+    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gradient-to-r from-blue-900 via-inybg to-blue-900">
       <div className="max-w-2xl w-full mx-auto flex flex-col justify-center items-center">
         <img src="/iny.png" className="h-20 w-26 mb-4" alt="INY Logo" />
         <h2 className="font-bold text-xl text-neutral-200 dark:text-neutral-200 text-center">
-          ¡Bienvenido Partner!
+          ¡Bienvenido Inner!
         </h2>
         <p className="text-neutral-300 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center mx-auto">
-          Acá encontrarás todos los beneficios de pertenecer a la comunidad de Partner.
+          Acá encontrarás todos los beneficios de pertenecer a la comunidad de Inners.
         </p>
       </div>
 

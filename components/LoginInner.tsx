@@ -4,7 +4,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/utils/cn";
 
-export function RegisteInner() {
+export function LoginInner() {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
